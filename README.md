@@ -105,6 +105,69 @@ Converts raw prompt into structured intent:
 - Converts the React-based video script into a playable MP4 file
 - Outputs the final video as the end result of the pipeline
 
+  ## LangGraph Workflow
+
+```mermaid
+graph TD
+A[Images + User Prompt]
+B[Image Analyzer]
+C[Intent Parser]
+D[Storyboard Writer]
+E[Script Generator]
+F[Compiler & Fixer]
+G[Renderer]
+H[Final MP4]
+
+A --> B
+B --> C
+C --> D
+D --> E
+E --> F
+F -->|Compilation Error| E
+F -->|Success| G
+G --> H
+```
+# 🧠 Model Selection Rationale
+
+| Agent | Model | Reason |
+|--------|-------|--------|
+| Image Analyzer | Gemini Vision | Accurate image understanding and scene analysis |
+| Intent Parser | Gemini Flash | Fast and cost-effective structured parsing |
+| Storyboard Writer | Gemini Pro | Better reasoning for narrative generation |
+| Script Generator | Gemini Pro | Produces reliable structured TypeScript/React code |
+| Compiler & Fixer | Gemini Pro | Strong debugging and code correction capabilities |
+
+# 📚 RAG Design
+
+The pipeline uses a local ChromaDB vector database containing two collections:
+
+### Style Guides
+- Cinematic
+- Wedding
+- Corporate
+- Birthday
+- Minimal
+- Energetic
+
+These documents help the Storyboard Writer generate videos matching the user's creative intent.
+
+### Remotion Documentation
+Contains Remotion API examples including:
+- Composition
+- Sequence
+- AbsoluteFill
+- Img
+- interpolate
+- useCurrentFrame
+
+These snippets are retrieved by the Script Generator and Compiler & Fixer to generate valid Remotion code.
+
+### Chunking Strategy
+
+- Style guides are stored as individual semantic documents.
+- Remotion documentation is chunked by API component and example.
+- Similarity search retrieves only the most relevant chunks for each agent.
+
 # 🧰 Tech Stack
 
 - Python 3.11+
