@@ -38,6 +38,9 @@ Images + Prompt
 [5] Compiler & Fixer (error recovery loop)
       ↓
 [6] Renderer (Remotion → MP4)
+```
+
+
 🤖 Agents Description
 1. Image Analyzer
 Analyses event images using vision models / heuristics
@@ -75,6 +78,7 @@ Retries generation (limited attempts)
 Uses Remotion CLI
 Renders final video
 Outputs MP4 file
+
 🧰 Tech Stack
 Python 3.11+
 LangGraph (multi-agent orchestration)
@@ -82,6 +86,7 @@ OpenAI / Gemini / LLM APIs
 ChromaDB (RAG vector database)
 TypeScript + React (Remotion)
 Node.js (video rendering engine)
+
 📁 Project Structure
 fotoowl-ai-video-pipeline/
 
@@ -114,6 +119,7 @@ fotoowl-ai-video-pipeline/
 ├── requirements.txt
 ├── package.json
 └── README.md
+
 ⚙️ Installation
 1. Clone repository
 git clone https://github.com/your-username/fotoowl-ai-video-pipeline.git
@@ -125,6 +131,7 @@ pip install -r requirements.txt
 3. Setup Remotion
 cd remotion-video
 npm install
+
 ▶️ How to Run
 Step 1: Run full AI pipeline
 python main.py --images images --prompt "Cinematic wedding reel, slow and emotional"
@@ -133,8 +140,10 @@ sample_output/
  ├── graph.mmd
  ├── storyboard.json
  ├── FotoOwlReel.mp4
+ 
 🎥 Final Output
 sample_output/FotoOwlReel.mp4
+
 🧪 Testing
 pytest tests/
 
@@ -143,6 +152,7 @@ Includes:
 Pipeline flow tests
 Storyboard validation tests
 LLM-as-judge evaluation for narrative quality
+
 🧠 Key Features
 Multi-agent LangGraph orchestration
 Structured LLM outputs (no free-text parsing)
@@ -150,17 +160,20 @@ RAG-enhanced storyboard generation
 Self-healing compiler loop
 Automatic Remotion video rendering
 Modular production-grade architecture
+
 📌 Known Limitations
 Requires stable LLM API access
 Rendering depends on number of images
 Limited retry attempts for fixes
 No UI (CLI-based system)
+
 🔮 Future Improvements
 Web UI for preview
 Faster rendering pipeline
 Smarter image selection
 Audio/music sync
 Cloud batch rendering
+
 🏆 Why this project matters
 
 This project demonstrates:
@@ -170,8 +183,8 @@ LangGraph orchestration
 RAG-based reasoning systems
 Code generation + self-healing pipelines
 End-to-end AI video generation architecture
-📜 License
 
+📜 License
 MIT License
 
 👤 Author
