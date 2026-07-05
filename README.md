@@ -242,19 +242,23 @@ sample_output/
 
 # 🧪 Testing
 
+The project includes a comprehensive test suite that validates the core functionality of the multi-agent pipeline. Tests use mocked LLM responses where applicable, allowing them to run without requiring live API keys.
+
+Run the test suite with:
+
 ```bash
 pytest tests/
 ```
 
-Includes:
-<br>
+### Test Coverage
 
-- Pipeline flow tests to ensure end-to-end execution works correctly.
-- <br>
-- Storyboard validation tests to verify structured narrative generation.
-- <br>
-- LLM-as-judge evaluation tests to assess the quality and coherence of generated storyboards.
-  <br>
+- **Graph Flow Tests** – Validate LangGraph workflow execution and state transitions.
+- **Intent Parsing Tests** – Verify conversion of user prompts into structured `VideoIntent` objects.
+- **RAG Retrieval Tests** – Ensure relevant style guides and Remotion documentation are retrieved correctly.
+- **Storyboard Intent Tests** – Confirm that generated storyboards reflect the user's creative intent.
+- **Retry Loop Routing Tests** – Validate conditional routing between the Compiler & Fixer and Script Generator nodes.
+- **LLM-as-Judge Tests** – Evaluate the narrative coherence and quality of generated storyboards.
+- **Mocked LLM Responses** – Enable deterministic and API-independent testing using mock implementations.
 
 # 🧠 Key Features
 
