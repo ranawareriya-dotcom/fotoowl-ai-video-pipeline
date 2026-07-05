@@ -40,25 +40,33 @@ Images + Prompt
 [6] Renderer (Remotion → MP4)
 ```
 
+# 🤖 Agents Description
 
-🤖 Agents Description
-1. Image Analyzer
-Analyses event images using vision models / heuristics
-Tags images (faces, emotions, scenes)
-Selects best subset of images for storytelling
-2. Intent Parser
+## 1. Image Analyzer
+- Analyses event images using vision models / heuristics  
+- Tags images (faces, emotions, scenes)  
+- Selects best subset of images for storytelling  
 
+---
+
+## 2. Intent Parser
 Converts raw prompt into structured intent:
 
+```json
 {
   "pacing": "slow",
   "visual_style": "cinematic",
   "caption_tone": "emotional",
   "transition_style": "fade"
 }
-3. Storyboard Writer (RAG powered)
-Uses style guides + Remotion documentation
-Builds structured narrative timeline
+```
+
+
+## 3. Storyboard Writer (RAG powered)
+- Uses style guides + Remotion documentation  
+- Builds a structured narrative timeline for the video using retrieved context  
+
+```json
 [
   {
     "image": "img1.jpg",
@@ -67,38 +75,48 @@ Builds structured narrative timeline
     "transition": "fade"
   }
 ]
-4. Script Generator
-Converts storyboard into valid Remotion React code
-Generates dynamic composition file
-5. Compiler & Fixer
-Detects runtime and compilation errors
-Sends error back to LLM for correction
-Retries generation (limited attempts)
-6. Renderer
-Uses Remotion CLI
-Renders final video
-Outputs MP4 file
+```
 
-🧰 Tech Stack
-Python 3.11+
-LangGraph (multi-agent orchestration)
-OpenAI / Gemini / LLM APIs
-ChromaDB (RAG vector database)
-TypeScript + React (Remotion)
-Node.js (video rendering engine)
+## 4. Script Generator
+- Converts storyboard into valid Remotion React code  
+- Generates a dynamic composition file  
+- Maps images, captions, duration, and transitions into Remotion components  
+- Ensures an executable video rendering script  
 
-📁 Project Structure
+---
+
+## 5. Compiler & Fixer
+- Detects runtime and compilation errors in generated code  
+- Sends error logs back to the LLM for correction  
+- Fixes issues iteratively based on feedback  
+- Retries generation with a controlled number of attempts
+
+
+## 6. Renderer
+- Uses Remotion CLI to render the final video  
+- Executes the compiled Remotion composition  
+- Converts the React-based video script into a playable MP4 file  
+- Outputs the final video as the end result of the pipeline  
+  
+
+# 🧰 Tech Stack
+
+- Python 3.11+  
+- LangGraph (multi-agent orchestration)  
+- OpenAI / Gemini / LLM APIs  
+- ChromaDB (RAG vector database)  
+- TypeScript + React (Remotion)  
+- Node.js (video rendering engine)  
+
+---
+
+# 📁 Project Structure
+
+```text
 fotoowl-ai-video-pipeline/
 
 ├── src/
 │   ├── agents/
-│   │   ├── image_analyser.py
-│   │   ├── intent_parser.py
-│   │   ├── storyboard_writer.py
-│   │   ├── script_generator.py
-│   │   ├── compiler.py
-│   │   └── renderer.py
-│
 │   ├── graph.py
 │   ├── state.py
 │   ├── schemas.py
@@ -113,80 +131,94 @@ fotoowl-ai-video-pipeline/
 │
 ├── sample_output/
 │   ├── graph.mmd
+│   ├── storyboard.json
 │   ├── FotoOwlReel.mp4
 │
 ├── main.py
 ├── requirements.txt
-├── package.json
 └── README.md
+```
 
-⚙️ Installation
-1. Clone repository
+# ⚙️ Installation
+
+```bash
 git clone https://github.com/your-username/fotoowl-ai-video-pipeline.git
 cd fotoowl-ai-video-pipeline
-2. Setup Python environment
+
 python -m venv venv
 venv\Scripts\activate   # Windows
+
 pip install -r requirements.txt
-3. Setup Remotion
+
 cd remotion-video
 npm install
+```
 
-▶️ How to Run
-Step 1: Run full AI pipeline
+# ▶️ How to Run
+
+```bash
 python main.py --images images --prompt "Cinematic wedding reel, slow and emotional"
-Step 2: Output files generated
+```
+
+# 🎥 Output
+
+After successful execution:
+
+```text
 sample_output/
  ├── graph.mmd
  ├── storyboard.json
  ├── FotoOwlReel.mp4
- 
-🎥 Final Output
-sample_output/FotoOwlReel.mp4
+```
 
-🧪 Testing
+# 🧪 Testing
+
+```bash
 pytest tests/
-
+```
 Includes:
+<br>
+- Pipeline flow tests to ensure end-to-end execution works correctly.
+- <br>
+- Storyboard validation tests to verify structured narrative generation.
+- <br>
+- LLM-as-judge evaluation tests to assess the quality and coherence of generated storyboards.
+<br>
 
-Pipeline flow tests
-Storyboard validation tests
-LLM-as-judge evaluation for narrative quality
 
-🧠 Key Features
-Multi-agent LangGraph orchestration
-Structured LLM outputs (no free-text parsing)
-RAG-enhanced storyboard generation
-Self-healing compiler loop
-Automatic Remotion video rendering
-Modular production-grade architecture
+# 🧠 Key Features
 
-📌 Known Limitations
-Requires stable LLM API access
-Rendering depends on number of images
-Limited retry attempts for fixes
-No UI (CLI-based system)
+- Multi-agent LangGraph orchestration for structured AI workflow  
+- Structured LLM outputs (no free-text parsing, fully schema-driven)  
+- RAG-enhanced storyboard generation using style guides and Remotion docs  
+- Self-healing compiler loop with automated error detection and retry mechanism  
+- Automatic Remotion video rendering from generated React composition  
+- Modular and scalable AI pipeline architecture designed for real-world use cases
 
-🔮 Future Improvements
-Web UI for preview
-Faster rendering pipeline
-Smarter image selection
-Audio/music sync
-Cloud batch rendering
+  
+# 📌 Known Limitations
 
-🏆 Why this project matters
+- Requires stable LLM API access for full pipeline execution  
+- Rendering time depends on number and size of input images  
+- Limited retry attempts in compiler & fixer loop for error recovery  
+- No user interface (CLI-based system only)  
+- Performance may vary depending on model latency and API quotas
 
-This project demonstrates:
+  
+# 🔮 Future Improvements
 
-Multi-agent AI system design
-LangGraph orchestration
-RAG-based reasoning systems
-Code generation + self-healing pipelines
-End-to-end AI video generation architecture
+- Web-based UI for real-time preview and video editing  
+- Smarter image selection model using advanced vision scoring  
+- Music and audio synchronization for cinematic enhancement  
+- Faster rendering pipeline optimization for large image sets  
+- Cloud-based batch processing for scalable video generation
 
-📜 License
-MIT License
-
-👤 Author
+  
+# 👤 Author
 
 Built as part of an AI Engineering multi-agent video generation system inspired by FotoOwl production pipelines.
+  
+
+
+
+
