@@ -1,0 +1,212 @@
+{
+  "image_folder": "images/",
+  "user_prompt": "Cinematic wedding reel, slow and emotional, warm tones, minimal text",
+  "intent": {
+    "raw_prompt": "Cinematic wedding reel, slow and emotional, warm tones, minimal text",
+    "pacing": "slow",
+    "visual_style": "cinematic",
+    "caption_tone": "emotional",
+    "transition_preference": "crossfade",
+    "target_duration_seconds": 45,
+    "music_mood": "soft piano",
+    "rationale": "Prompt explicitly requests slow, emotional, minimal-text cinematic treatment."
+  },
+  "image_analyses": [
+    {
+      "file_name": "img_00.jpg",
+      "description": "Event photo 0",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "joyful",
+      "composition_quality": 0.4,
+      "suggested_role": "opening"
+    },
+    {
+      "file_name": "img_01.jpg",
+      "description": "Event photo 1",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "candid",
+      "composition_quality": 0.9,
+      "suggested_role": "climax"
+    },
+    {
+      "file_name": "img_02.jpg",
+      "description": "Event photo 2",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "joyful",
+      "composition_quality": 0.9,
+      "suggested_role": "closing"
+    },
+    {
+      "file_name": "img_03.jpg",
+      "description": "Event photo 3",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "candid",
+      "composition_quality": 0.4,
+      "suggested_role": "filler"
+    },
+    {
+      "file_name": "img_04.jpg",
+      "description": "Event photo 4",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "joyful",
+      "composition_quality": 0.9,
+      "suggested_role": "opening"
+    },
+    {
+      "file_name": "img_05.jpg",
+      "description": "Event photo 5",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "candid",
+      "composition_quality": 0.9,
+      "suggested_role": "climax"
+    },
+    {
+      "file_name": "img_06.jpg",
+      "description": "Event photo 6",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "joyful",
+      "composition_quality": 0.4,
+      "suggested_role": "closing"
+    },
+    {
+      "file_name": "img_07.jpg",
+      "description": "Event photo 7",
+      "detected_subjects": [
+        "people"
+      ],
+      "dominant_colors": [
+        "warm amber",
+        "white"
+      ],
+      "estimated_emotion": "candid",
+      "composition_quality": 0.9,
+      "suggested_role": "filler"
+    }
+  ],
+  "selected_images": [
+    "img_01.jpg",
+    "img_02.jpg",
+    "img_04.jpg",
+    "img_05.jpg",
+    "img_07.jpg"
+  ],
+  "storyboard": {
+    "scenes": [
+      {
+        "scene_index": 0,
+        "file_name": "img_01.jpg",
+        "duration_seconds": 5.0,
+        "caption": "the quiet before",
+        "transition_in": "crossfade",
+        "camera_effect": "ken_burns_zoom_in"
+      },
+      {
+        "scene_index": 1,
+        "file_name": "img_02.jpg",
+        "duration_seconds": 5.0,
+        "caption": "the quiet before",
+        "transition_in": "crossfade",
+        "camera_effect": "ken_burns_zoom_in"
+      },
+      {
+        "scene_index": 2,
+        "file_name": "img_04.jpg",
+        "duration_seconds": 5.0,
+        "caption": "the quiet before",
+        "transition_in": "crossfade",
+        "camera_effect": "ken_burns_zoom_in"
+      },
+      {
+        "scene_index": 3,
+        "file_name": "img_05.jpg",
+        "duration_seconds": 5.0,
+        "caption": "the quiet before",
+        "transition_in": "crossfade",
+        "camera_effect": "ken_burns_zoom_in"
+      },
+      {
+        "scene_index": 4,
+        "file_name": "img_07.jpg",
+        "duration_seconds": 5.0,
+        "caption": "the quiet before",
+        "transition_in": "crossfade",
+        "camera_effect": "ken_burns_zoom_in"
+      }
+    ],
+    "total_duration_seconds": 25.0,
+    "narrative_arc": "arrival -> celebration -> closing",
+    "style_notes": "Generated for cinematic style."
+  },
+  "script": {
+    "file_name": "Composition.tsx",
+    "typescript_code": "import {Composition, Sequence, AbsoluteFill, staticFile} from 'remotion';\nexport const FotoOwlReel = () => (<AbsoluteFill><Sequence from={0} durationInFrames={90}><img src={staticFile('img_00.jpg')} /></Sequence></AbsoluteFill>);\nexport const RemotionRoot = () => (<Composition id='FotoOwlReel' component={FotoOwlReel} durationInFrames={900} fps={30} width={1080} height={1920} />);\n",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "composition_id": "FotoOwlReel"
+  },
+  "compile_result": {
+    "success": true,
+    "errors": [],
+    "stdout": "tsc: no errors",
+    "attempt_number": 1
+  },
+  "fix_attempts": 1,
+  "max_fix_attempts": 3,
+  "render_result": {
+    "success": true,
+    "output_path": "sample_output/FotoOwlReel.mp4",
+    "duration_seconds": 12.4,
+    "error_message": null
+  },
+  "node_trace": [
+    "intent_parser",
+    "image_analyser",
+    "storyboard_writer",
+    "script_generator",
+    "compiler_fixer",
+    "renderer"
+  ]
+}

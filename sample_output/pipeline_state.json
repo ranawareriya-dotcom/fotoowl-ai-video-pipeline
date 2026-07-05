@@ -1,0 +1,89 @@
+{
+  "image_folder": "images",
+  "user_prompt": "Cinematic wedding reel, slow and emotional, warm tones",
+  "intent": {
+    "raw_prompt": "Cinematic wedding reel, slow and emotional, warm tones",
+    "pacing": "slow",
+    "visual_style": "cinematic",
+    "caption_tone": "emotional",
+    "transition_preference": "crossfade",
+    "target_duration_seconds": 45,
+    "music_mood": "romantic",
+    "rationale": "The prompt explicitly asks for a 'slow and emotional' 'cinematic wedding reel', guiding these choices. A 'crossfade' transition and 'romantic' music mood enhance the emotional, cinematic feel, with a 45-second duration being appropriate for a short reel."
+  },
+  "image_analyses": [
+    "file_name='img1.jpg' description='A cinematic, full-body shot of a South Asian bride and groom standing outdoors, looking at each other affectionately in their elaborate wedding attire, with a soft, natural background of trees and foliage.' detected_subjects=['Bride', 'Groom', 'Wedding attire'] dominant_colors=['Cream', 'Gold', 'Light Green', 'Pink', 'Dark Green', 'Brown'] estimated_emotion='Joy, Love, Affection, Serenity' composition_quality=0.9 suggested_role='Opening'",
+    "file_name='img2.jpg' description=\"A close-up cinematic shot of a South Asian groom tenderly kissing his bride's forehead, both smiling with eyes closed in a moment of profound love and intimacy, set against a blurred green background.\" detected_subjects=['Bride', 'Groom'] dominant_colors=['Cream', 'Gold', 'Light Green', 'Pink', 'Dark Green'] estimated_emotion='Love, Tenderness, Joy, Intimacy' composition_quality=0.95 suggested_role='Climax'",
+    "file_name='img3.jpg' description=\"A cinematic, mid-shot of a South Asian groom tenderly kissing his bride's forehead, both smiling with eyes closed, surrounded by the natural, softly lit outdoor environment.\" detected_subjects=['Bride', 'Groom', 'Wedding attire'] dominant_colors=['Cream', 'Gold', 'Light Green', 'Pink', 'Dark Green', 'Brown'] estimated_emotion='Love, Tenderness, Joy, Intimacy' composition_quality=0.9 suggested_role='Climax'",
+    "file_name='img4.jpg' description='A young girl in a bright pink and yellow outfit practices golf putting on a sunny, green golf course, with an adult mentor observing her patiently in the background under a clear blue sky.' detected_subjects=['Young girl', 'Adult mentor', 'Golf club', 'Golf balls', 'Golf course'] dominant_colors=['Green', 'Blue', 'Yellow', 'Pink'] estimated_emotion='Concentration, Learning, Support, Determination' composition_quality=0.8 suggested_role='Filler'",
+    "file_name='img5.jpg' description='Two male golfers, one in a light green shirt and the other in blue, are seen loading golf bags onto a golf cart on a bright, sunny day, with a rustic building in the background.' detected_subjects=['Golfer 1', 'Golfer 2', 'Golf cart', 'Golf bags'] dominant_colors=['Green', 'Blue', 'White', 'Brown', 'Black'] estimated_emotion='Preparation, Anticipation, Casual' composition_quality=0.75 suggested_role='Opening'",
+    "file_name='img6.jpg' description='An expansive cinematic shot of multiple golfers carrying their bags as they walk across a vast, lush green golf course under a clear blue sky, with a line of trees in the distance.' detected_subjects=['Multiple golfers', 'Golf bags', 'Golf course', 'Trees'] dominant_colors=['Green', 'Blue', 'White'] estimated_emotion='Serenity, Leisure, Activity, Openness' composition_quality=0.85 suggested_role='Opening'",
+    "file_name='img7.jpg' description='Two men playing pickleball on an outdoor court at night, with the player in the foreground poised to strike the ball, lit by bright court lights and a vibrant orange backdrop.' detected_subjects=['Pickleball player 1', 'Pickleball player 2', 'Pickleball court', 'Rackets'] dominant_colors=['Blue', 'Orange', 'Black', 'Green', 'White'] estimated_emotion='Action, Focus, Energy, Competition' composition_quality=0.7 suggested_role='Filler'",
+    "file_name='img8.jpg' description='Two men engaged in a game of pickleball on an illuminated outdoor court at night, one player reaching out with his racket, ready for the shot, with a colorful branded banner in the background.' detected_subjects=['Pickleball player 1', 'Pickleball player 2', 'Pickleball court', 'Rackets'] dominant_colors=['Blue', 'Orange', 'Black', 'Green', 'White'] estimated_emotion='Action, Focus, Energy, Competition' composition_quality=0.7 suggested_role='Filler'"
+  ],
+  "selected_images": [
+    "img1.jpg",
+    "img3.jpg",
+    "img2.jpg"
+  ],
+  "storyboard": {
+    "scenes": [
+      {
+        "scene_index": 1,
+        "file_name": "img1.jpg",
+        "duration_seconds": 6.0,
+        "caption": "the quiet promise",
+        "transition_in": "crossfade",
+        "camera_effect": "slow zoom in"
+      },
+      {
+        "scene_index": 2,
+        "file_name": "img3.jpg",
+        "duration_seconds": 6.0,
+        "caption": "a tender world",
+        "transition_in": "crossfade",
+        "camera_effect": "slow zoom in"
+      },
+      {
+        "scene_index": 3,
+        "file_name": "img2.jpg",
+        "duration_seconds": 6.0,
+        "caption": "forever's embrace",
+        "transition_in": "crossfade",
+        "camera_effect": "slow zoom in"
+      }
+    ],
+    "total_duration_seconds": 18.0,
+    "narrative_arc": "initial tenderness -> intimate moment -> profound love",
+    "style_notes": "All transitions are crossfades to maintain a cinematic, emotional flow, as per preference and style guide. Scenes hold for 6 seconds each to ensure slow pacing, allowing moments to breathe. Captions are short, poetic fragments, avoiding exclamation marks. Camera effects use slow zoom-ins for an intimate, Ken Burns effect. The total duration is shorter than the target due to the limited number of high-quality, relevant images suitable for the requested cinematic, emotional wedding reel; focus was placed on narrative coherence and quality over hitting the exact target duration with unsuitable content."
+  },
+  "script": {
+    "file_name": "Composition.tsx",
+    "typescript_code": "import React from 'react';\nimport {\n  Composition,\n  Sequence,\n  AbsoluteFill,\n  Img,\n  staticFile,\n  interpolate,\n  useCurrentFrame,\n  Easing,\n} from 'remotion';\n\nconst FPS = 30;\nconst WIDTH = 1080;\nconst HEIGHT = 1920;\nconst SCENE_DURATION_SECONDS = 6;\nconst SCENE_DURATION_FRAMES = SCENE_DURATION_SECONDS * FPS; \nconst FADE_DURATION_FRAMES = 15; \n\ninterface SceneContentProps {\n  imageSrc: string;\n  caption: string;\n  zoomFactor?: number;\n}\n\nconst SceneContent: React.FC<SceneContentProps> = ({\n  imageSrc,\n  caption,\n  zoomFactor = 1.15,\n}) => {\n  const frame = useCurrentFrame();\n\n  const scale = interpolate(frame, [0, SCENE_DURATION_FRAMES], [1, zoomFactor], {\n    extrapolateLeft: 'clamp',\n    extrapolateRight: 'clamp',\n  });\n\n  return (\n    <AbsoluteFill style={{ backgroundColor: 'black' }}>\n      <Img\n        src={staticFile(imageSrc)}\n        style={{\n          width: '100%',\n          height: '100%',\n          objectFit: 'cover',\n          transform: `scale(${scale})`,\n        }}\n      />\n      <AbsoluteFill\n        style={{\n          justifyContent: 'flex-end',\n          alignItems: 'center',\n          paddingBottom: 80,\n        }}\n      >\n        <div\n          style={{\n            color: 'white',\n            fontSize: 48,\n            fontFamily: 'Montserrat, sans-serif',\n            textAlign: 'center',\n            textShadow: '2px 2px 4px rgba(0,0,0,0.7)',\n          }}\n        >\n          {caption}\n        </div>\n      </AbsoluteFill>\n    </AbsoluteFill>\n  );\n};\n\nexport const FotoOwlReel: React.FC = () => {\n  const scenes = [\n    { file: 'img1.jpg', caption: 'the quiet promise' },\n    { file: 'img3.jpg', caption: 'a tender world' },\n    { file: 'img2.jpg', caption: 'forever\\'s embrace' },\n  ];\n\n  let currentGlobalStartFrame = 0;\n  const allElements: React.ReactNode[] = [];\n\n  scenes.forEach((scene, index) => {\n    const isFirstScene = index === 0;\n    const isLastScene = index === scenes.length - 1;\n\n    // 1. Render the incoming scene's fading-in part (if not the first scene)\n    if (!isFirstScene) {\n      allElements.push(\n        <Sequence\n          key={`fade-in-${index}`}\n          from={currentGlobalStartFrame}\n          durationInFrames={FADE_DURATION_FRAMES}\n        >\n          <AbsoluteFill\n            style={{\n              opacity: interpolate(\n                useCurrentFrame(),\n                [0, FADE_DURATION_FRAMES],\n                [0, 1],\n                {\n                  extrapolateLeft: 'clamp',\n                  extrapolateRight: 'clamp',\n                  easing: Easing.ease,\n                }\n              ),\n            }}\n          >\n            <SceneContent imageSrc={scene.file} caption={scene.caption} />\n          </AbsoluteFill>\n        </Sequence>\n      );\n    }\n\n    // 2. Render the current scene's main, fully opaque duration\n    const mainContentFrom = isFirstScene ? 0 : currentGlobalStartFrame + FADE_DURATION_FRAMES;\n    const mainContentDuration = SCENE_DURATION_FRAMES - (isFirstScene || isLastScene ? 0 : FADE_DURATION_FRAMES);\n\n    allElements.push(\n      <Sequence\n        key={`scene-${index}-main`}\n        from={mainContentFrom}\n        durationInFrames={mainContentDuration}\n      >\n        <SceneContent imageSrc={scene.file} caption={scene.caption} />\n      </Sequence>\n    );\n\n    // 3. Render the outgoing scene's fading-out part (if not the last scene)\n    if (!isLastScene) {\n      allElements.push(\n        <Sequence\n          key={`fade-out-${index}`}\n          from={currentGlobalStartFrame + SCENE_DURATION_FRAMES}\n          durationInFrames={FADE_DURATION_FRAMES}\n        >\n          <AbsoluteFill\n            style={{\n              opacity: interpolate(\n                useCurrentFrame(),\n                [0, FADE_DURATION_FRAMES],\n                [1, 0],\n                {\n                  extrapolateLeft: 'clamp',\n                  extrapolateRight: 'clamp',\n                  easing: Easing.ease,\n                }\n              ),\n            }}\n          >\n            <SceneContent imageSrc={scene.file} caption={scene.caption} />\n          </AbsoluteFill>\n        </Sequence>\n      );\n\n      // Advance currentGlobalStartFrame for the next scene's start (accounting for overlap)\n      currentGlobalStartFrame += SCENE_DURATION_FRAMES - FADE_DURATION_FRAMES;\n    } else {\n      // For the last scene, simply add its full duration\n      currentGlobalStartFrame += SCENE_DURATION_FRAMES;\n    }\n  });\n\n  return <AbsoluteFill>{allElements}</AbsoluteFill>;\n};\n\nexport const RemotionRoot: React.FC = () => (\n  <>\n    <Composition\n      id=\"FotoOwlReel\"\n      component={FotoOwlReel}\n      durationInFrames={3 * SCENE_DURATION_FRAMES - (3 - 1) * FADE_DURATION_FRAMES}\n      fps={FPS}\n      width={WIDTH}\n      height={HEIGHT}\n    />\n  </>\n);\n",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "composition_id": "FotoOwlReel"
+  },
+  "compile_result": {
+    "success": true,
+    "errors": [],
+    "stdout": "",
+    "attempt_number": 1
+  },
+  "fix_attempts": 1,
+  "max_fix_attempts": 3,
+  "render_result": {
+    "success": true,
+    "output_path": "D:\\Projects\\fotoowl-pipeline\\src\\agents\\..\\..\\sample_output\\FotoOwlReel.mp4",
+    "duration_seconds": 41.25991749763489,
+    "error_message": null
+  },
+  "node_trace": [
+    "intent_parser",
+    "storyboard_writer",
+    "script_generator",
+    "compiler_fixer",
+    "renderer"
+  ]
+}

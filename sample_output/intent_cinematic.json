@@ -1,0 +1,10 @@
+{
+  "raw_prompt": "Cinematic wedding reel, slow and emotional, warm tones, minimal text",
+  "pacing": "slow",
+  "visual_style": "cinematic",
+  "caption_tone": "emotional",
+  "transition_preference": "crossfade",
+  "target_duration_seconds": 45,
+  "music_mood": "soft piano",
+  "rationale": "Prompt explicitly requests slow, emotional, minimal-text cinematic treatment."
+}

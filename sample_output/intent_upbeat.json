@@ -1,0 +1,10 @@
+{
+  "raw_prompt": "Upbeat birthday reel, fast cuts, bold captions, energetic",
+  "pacing": "fast",
+  "visual_style": "upbeat",
+  "caption_tone": "playful",
+  "transition_preference": "hard_cut",
+  "target_duration_seconds": 25,
+  "music_mood": "upbeat pop",
+  "rationale": "Prompt explicitly requests fast, energetic, bold-caption treatment."
+}
